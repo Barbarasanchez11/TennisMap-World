@@ -1,0 +1,16 @@
+# Node.js
+node_modules/
+.env
+*.log
+npm-debug.log*
+
+# Editor configs
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Optional: coverage & build folders if usas tests o bundles
+coverage/
+dist/

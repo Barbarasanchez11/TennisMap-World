@@ -1,0 +1,36 @@
+{
+  "name": "tennismap-world",
+  "version": "1.0.0",
+  "description": "API backend para TennisMap World, una aplicación interactiva que muestra en tiempo real torneos, jugadores y eventos del ecosistema global del tenis.",
+  "main": "src/app.js",
+  "scripts": {
+    "dev": "nodemon src/app.js",
+    "test": "echo \"No test specified\" && exit 1"
+  },
+  "keywords": [
+    "tennis",
+    "api",
+    "map",
+    "realtime",
+    "sports",
+    "express",
+    "nodejs",
+    "torneos",
+    "jugadores",
+    "backend",
+    "mapbox",
+    "openweather",
+    "mongodb"
+  ],
+  "author": "Bárbara Sánchez",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  }
+}
