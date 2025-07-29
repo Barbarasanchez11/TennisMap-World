@@ -1,10 +1,12 @@
 {
   "name": "tennismap-world",
   "version": "1.0.0",
+  "type": "module",
   "description": "API backend para TennisMap World, una aplicación interactiva que muestra en tiempo real torneos, jugadores y eventos del ecosistema global del tenis.",
   "main": "src/app.js",
   "scripts": {
-    "dev": "nodemon src/app.js",
+    "dev": "nodemon app.js",
+    "lint": "eslint . --fix",
     "test": "echo \"No test specified\" && exit 1"
   },
   "keywords": [
@@ -28,9 +30,13 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
+    "mongodb": "^6.17.0",
     "mongoose": "^8.16.3"
   },
   "devDependencies": {
+    "@eslint/js": "^9.31.0",
+    "eslint": "^8.57.1",
+    "globals": "^16.3.0",
     "nodemon": "^3.0.0"
   }
 }
