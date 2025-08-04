@@ -1,20 +1,37 @@
 # 🎾 TennisMap-World
 
-Una API backend moderna para **TennisMap World**, una aplicación interactiva que muestra en tiempo real torneos, jugadores y eventos del ecosistema global del tenis.
+Una API backend moderna para **TennisMap World**, un mapa interactivo que muestra en tiempo real todo lo que ocurre en el mundo del tenis.
+
+## 🌟 ¿Qué es TennisMap World?
+
+Un mapa interactivo que muestra en tiempo real todo lo que ocurre en el mundo del tenis:
+
+- **Torneos en curso** - Visualización geográfica de competiciones activas
+- **Jugadores activos** - Ubicación y estado de tenistas profesionales
+- **Tweets o noticias relevantes** - Eventos sociales localizados geográficamente
+- **Estadísticas en tiempo real** - Clima, tipo de cancha, asistencia, etc.
+
+### 🎯 Propuesta de valor
+
+- Ofrece una visión global y visual del tenis como nunca se ha visto
+- Aporta contexto en tiempo real: "¿Dónde se está jugando tenis ahora mismo?"
+- Ideal para periodistas, fans globales, o buscadores de talento
 
 ## 🌟 Características
 
 - **API RESTful** para gestión de datos de tenis
 - **Base de datos MongoDB** con Mongoose ODM
 - **Tiempo real** para actualizaciones de eventos
-- **Integración con Mapbox** para visualización geográfica
+- **Visualización geográfica** con mapas interactivos
 - **Datos meteorológicos** con OpenWeather API
+- **Integración con redes sociales** (X, Instagram)
 - **CORS habilitado** para desarrollo frontend
 - **Validación de datos** robusta
 - **ESLint** configurado para código limpio
 
 ## 🚀 Tecnologías
 
+### Backend
 - **Node.js** - Runtime de JavaScript
 - **Express.js** - Framework web
 - **MongoDB** - Base de datos NoSQL
@@ -22,6 +39,11 @@ Una API backend moderna para **TennisMap World**, una aplicación interactiva qu
 - **CORS** - Cross-Origin Resource Sharing
 - **Dotenv** - Variables de entorno
 - **Nodemon** - Reinicio automático en desarrollo
+
+### Frontend (Próximamente)
+- **React** - Biblioteca de interfaz de usuario
+- **APIs de tenis** - ITF/WTA/ATP o simuladas
+- **Integración social** - X, Instagram o similar
 
 ## 📋 Prerrequisitos
 
@@ -102,15 +124,22 @@ tennismap-world/
 
 ## 🔮 Próximas Funcionalidades
 
+### Backend
 - [ ] Autenticación JWT
 - [ ] Endpoints para jugadores
 - [ ] Endpoints para torneos
-- [ ] Integración con Mapbox API
 - [ ] Integración con OpenWeather API
 - [ ] WebSockets para tiempo real
 - [ ] Tests unitarios y de integración
 - [ ] Documentación con Swagger
 - [ ] Docker para containerización
+
+### Frontend
+- [ ] Interfaz React con mapas interactivos
+- [ ] Integración con APIs de tenis (ITF/WTA/ATP)
+- [ ] Capa de eventos sociales (X, Instagram)
+- [ ] Visualización en tiempo real de torneos
+- [ ] Sistema de notificaciones geográficas
 
 ## 🤝 Contribuir
 
