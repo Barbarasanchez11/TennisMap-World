@@ -1,0 +1,146 @@
+[
+  {
+    "firstName": "Rafael",
+    "lastName": "Nadal",
+    "nationality": "España",
+    "dateOfBirth": "1986-06-03",
+    "ranking": 1,
+    "points": 9850,
+    "dominantHand": "izquierda",
+    "gender": "masculino",
+    "country": "España",
+    "city": "Manacor",
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [3.2097, 39.5696]
+    },
+    "isActive": true,
+    "socialMedia": {
+      "twitter": "RafaelNadal",
+      "instagram": "rafaelnadal"
+    },
+    "height": 185,
+    "weight": 85,
+    "imageUrl": "https://example.com/nadal.jpg"
+  },
+  {
+    "firstName": "Novak",
+    "lastName": "Djokovic",
+    "nationality": "Serbia",
+    "dateOfBirth": "1987-05-22",
+    "ranking": 2,
+    "points": 9720,
+    "dominantHand": "derecha",
+    "gender": "masculino",
+    "country": "Serbia",
+    "city": "Belgrado",
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [20.4489, 44.7866]
+    },
+    "isActive": true,
+    "socialMedia": {
+      "twitter": "DjokerNole",
+      "instagram": "djokernole"
+    },
+    "height": 188,
+    "weight": 77,
+    "imageUrl": "https://example.com/djokovic.jpg"
+  },
+  {
+    "firstName": "Carlos",
+    "lastName": "Alcaraz",
+    "nationality": "España",
+    "dateOfBirth": "2003-05-05",
+    "ranking": 3,
+    "points": 8865,
+    "dominantHand": "derecha",
+    "gender": "masculino",
+    "country": "España",
+    "city": "El Palmar",
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [-1.1398, 37.9411]
+    },
+    "isActive": true,
+    "socialMedia": {
+      "twitter": "carlosalcaraz",
+      "instagram": "carlitosalcarazz"
+    },
+    "height": 183,
+    "weight": 80,
+    "imageUrl": "https://example.com/alcaraz.jpg"
+  },
+  {
+    "firstName": "Iga",
+    "lastName": "Świątek",
+    "nationality": "Polonia",
+    "dateOfBirth": "2001-05-31",
+    "ranking": 1,
+    "points": 10255,
+    "dominantHand": "derecha",
+    "gender": "femenino",
+    "country": "Polonia",
+    "city": "Varsovia",
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [21.0122, 52.2297]
+    },
+    "isActive": true,
+    "socialMedia": {
+      "twitter": "iga_swiatek",
+      "instagram": "iga.swiatek"
+    },
+    "height": 176,
+    "weight": 65,
+    "imageUrl": "https://example.com/swiatek.jpg"
+  },
+  {
+    "firstName": "Aryna",
+    "lastName": "Sabalenka",
+    "nationality": "Bielorrusia",
+    "dateOfBirth": "1998-05-05",
+    "ranking": 2,
+    "points": 8895,
+    "dominantHand": "derecha",
+    "gender": "femenino",
+    "country": "Bielorrusia",
+    "city": "Minsk",
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [27.5618, 53.9045]
+    },
+    "isActive": true,
+    "socialMedia": {
+      "twitter": "SabalenkaA",
+      "instagram": "sabalenka_aryna"
+    },
+    "height": 182,
+    "weight": 80,
+    "imageUrl": "https://example.com/sabalenka.jpg"
+  },
+  {
+    "firstName": "Coco",
+    "lastName": "Gauff",
+    "nationality": "Estados Unidos",
+    "dateOfBirth": "2004-03-13",
+    "ranking": 3,
+    "points": 7200,
+    "dominantHand": "derecha",
+    "gender": "femenino",
+    "country": "Estados Unidos",
+    "city": "Delray Beach",
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [-80.0728, 26.4615]
+    },
+    "isActive": true,
+    "socialMedia": {
+      "twitter": "CocoGauff",
+      "instagram": "cocogauff"
+    },
+    "height": 175,
+    "weight": 65,
+    "imageUrl": "https://example.com/gauff.jpg"
+  }
+] 

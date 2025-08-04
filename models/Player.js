@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const playerSchema = new mongoose.Schema({
-  // Datos básicos
   firstName: {
     type: String,
     required: [true, 'El nombre es obligatorio'],
@@ -24,7 +23,7 @@ const playerSchema = new mongoose.Schema({
     required: [true, 'La fecha de nacimiento es obligatoria']
   },
   
-  // Datos deportivos
+ 
   ranking: {
     type: Number,
     min: [0, 'El ranking no puede ser negativo']
@@ -45,7 +44,7 @@ const playerSchema = new mongoose.Schema({
     required: [true, 'El género es obligatorio']
   },
   
-  // Ubicación
+ 
   country: {
     type: String,
     required: [true, 'El país es obligatorio'],
@@ -67,7 +66,7 @@ const playerSchema = new mongoose.Schema({
     }
   },
   
-  // Estado
+  
   isActive: {
     type: Boolean,
     default: true
@@ -77,7 +76,7 @@ const playerSchema = new mongoose.Schema({
     ref: 'Tournament'
   },
   
-  // Redes sociales
+
   socialMedia: {
     twitter: {
       type: String,
@@ -89,7 +88,7 @@ const playerSchema = new mongoose.Schema({
     }
   },
   
-  // Información adicional
+
   height: {
     type: Number,
     min: [100, 'La altura debe ser al menos 100cm'],
@@ -101,29 +100,26 @@ const playerSchema = new mongoose.Schema({
     max: [150, 'El peso no puede ser más de 150kg']
   },
   
-  // Imagen del jugador
+  
   imageUrl: {
     type: String,
     trim: true
   }
 }, {
-  timestamps: true, // Añade createdAt y updatedAt automáticamente
+  timestamps: true, 
   toJSON: { virtuals: true },
   toObject: { virtuals: true }
 });
 
-// Índice geográfico para búsquedas por ubicación
 playerSchema.index({ coordinates: '2dsphere' });
-
-// Índice para búsquedas por nombre
+e
 playerSchema.index({ firstName: 1, lastName: 1 });
 
-// Virtual para nombre completo
+
 playerSchema.virtual('fullName').get(function() {
   return `${this.firstName} ${this.lastName}`;
 });
 
-// Virtual para edad
 playerSchema.virtual('age').get(function() {
   if (!this.dateOfBirth) return null;
   const today = new Date();
