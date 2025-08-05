@@ -112,7 +112,7 @@ const playerSchema = new mongoose.Schema({
 });
 
 playerSchema.index({ coordinates: '2dsphere' });
-e
+
 playerSchema.index({ firstName: 1, lastName: 1 });
 
 
