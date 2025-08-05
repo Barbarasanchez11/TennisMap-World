@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const playerSchema = new mongoose.Schema({
   firstName: {
@@ -134,4 +134,4 @@ playerSchema.virtual('age').get(function() {
   return age;
 });
 
-module.exports = mongoose.model('Player', playerSchema); 
+export default mongoose.model('Player', playerSchema); 

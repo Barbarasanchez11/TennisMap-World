@@ -1,9 +1,12 @@
-const mongoose = require('mongoose');
-const fs = require('fs');
-const path = require('path');
-require('dotenv').config();
+import mongoose from 'mongoose';
+import fs from 'fs';
+import path from 'path';
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
 
-const Player = require('../models/Player');
+dotenv.config();
+
+import Player from '../models/Player.js';
 
 const connectDB = async () => {
   try {
@@ -14,6 +17,9 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const loadPlayersData = () => {
   try {
@@ -74,4 +80,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { seedPlayers, connectDB }; 
+export { seedPlayers, connectDB }; 
