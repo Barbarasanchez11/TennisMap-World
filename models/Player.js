@@ -3,51 +3,51 @@ import mongoose from 'mongoose';
 const playerSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    required: [true, 'El nombre es obligatorio'],
+    required: [true, 'First name is required'],
     trim: true,
-    maxlength: [50, 'El nombre no puede tener más de 50 caracteres']
+    maxlength: [50, 'First name cannot be longer than 50 characters']
   },
   lastName: {
     type: String,
-    required: [true, 'El apellido es obligatorio'],
+    required: [true, 'Last name is required'],
     trim: true,
-    maxlength: [50, 'El apellido no puede tener más de 50 caracteres']
+    maxlength: [50, 'Last name cannot be longer than 50 characters']
   },
   nationality: {
     type: String,
-    required: [true, 'La nacionalidad es obligatoria'],
+    required: [true, 'Nationality is required'],
     trim: true
   },
   dateOfBirth: {
     type: Date,
-    required: [true, 'La fecha de nacimiento es obligatoria']
+    required: [true, 'Date of birth is required']
   },
   
  
   ranking: {
     type: Number,
-    min: [0, 'El ranking no puede ser negativo']
+    min: [0, 'Ranking cannot be negative']
   },
   points: {
     type: Number,
     default: 0,
-    min: [0, 'Los puntos no pueden ser negativos']
+    min: [0, 'Points cannot be negative']
   },
   dominantHand: {
     type: String,
-    enum: ['derecha', 'izquierda', 'ambidiestro'],
-    default: 'derecha'
+    enum: ['right', 'left', 'ambidextrous'],
+    default: 'right'
   },
   gender: {
     type: String,
-    enum: ['masculino', 'femenino'],
-    required: [true, 'El género es obligatorio']
+    enum: ['male', 'female'],
+    required: [true, 'Gender is required']
   },
   
  
   country: {
     type: String,
-    required: [true, 'El país es obligatorio'],
+    required: [true, 'Country is required'],
     trim: true
   },
   city: {
@@ -62,7 +62,7 @@ const playerSchema = new mongoose.Schema({
     },
     coordinates: {
       type: [Number],
-      required: [true, 'Las coordenadas son obligatorias']
+      required: [true, 'Coordinates are required']
     }
   },
   
@@ -91,13 +91,13 @@ const playerSchema = new mongoose.Schema({
 
   height: {
     type: Number,
-    min: [100, 'La altura debe ser al menos 100cm'],
-    max: [250, 'La altura no puede ser más de 250cm']
+    min: [100, 'Height must be at least 100cm'],
+    max: [250, 'Height cannot be more than 250cm']
   },
   weight: {
     type: Number,
-    min: [30, 'El peso debe ser al menos 30kg'],
-    max: [150, 'El peso no puede ser más de 150kg']
+    min: [30, 'Weight must be at least 30kg'],
+    max: [150, 'Weight cannot be more than 150kg']
   },
   
   

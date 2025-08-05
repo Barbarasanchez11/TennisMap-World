@@ -11,7 +11,7 @@ const getAllPlayers = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Error obteniendo jugadores',
+      message: 'Error getting players',
       error: error.message
     });
   }
@@ -26,7 +26,7 @@ const getPlayerById = async (req, res) => {
     if (!player) {
       return res.status(404).json({
         success: false,
-        message: 'Jugador no encontrado'
+        message: 'Player not found'
       });
     }
 
@@ -37,7 +37,7 @@ const getPlayerById = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Error obteniendo jugador',
+      message: 'Error getting player',
       error: error.message
     });
   }
@@ -52,13 +52,13 @@ const createPlayer = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      message: 'Jugador creado exitosamente',
+      message: 'Player created successfully',
       data: player
     });
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: 'Error creando jugador',
+      message: 'Error creating player',
       error: error.message
     });
   }
@@ -78,19 +78,19 @@ const updatePlayer = async (req, res) => {
     if (!player) {
       return res.status(404).json({
         success: false,
-        message: 'Jugador no encontrado'
+        message: 'Player not found'
       });
     }
 
     res.status(200).json({
       success: true,
-      message: 'Jugador actualizado exitosamente',
+      message: 'Player updated successfully',
       data: player
     });
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: 'Error actualizando jugador',
+      message: 'Error updating player',
       error: error.message
     });
   }
@@ -105,18 +105,18 @@ const deletePlayer = async (req, res) => {
     if (!player) {
       return res.status(404).json({
         success: false,
-        message: 'Jugador no encontrado'
+        message: 'Player not found'
       });
     }
 
     res.status(200).json({
       success: true,
-      message: 'Jugador eliminado exitosamente'
+      message: 'Player deleted successfully'
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Error eliminando jugador',
+      message: 'Error deleting player',
       error: error.message
     });
   }
@@ -129,7 +129,7 @@ const getPlayersByLocation = async (req, res) => {
     if (!lat || !lng) {
       return res.status(400).json({
         success: false,
-        message: 'Latitud y longitud son requeridas'
+        message: 'Latitude and longitude are required'
       });
     }
 
@@ -153,7 +153,7 @@ const getPlayersByLocation = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Error buscando jugadores por ubicación',
+      message: 'Error searching players by location',
       error: error.message
     });
   }
@@ -182,7 +182,7 @@ const getPlayersByRanking = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Error obteniendo jugadores por ranking',
+      message: 'Error getting players by ranking',
       error: error.message
     });
   }

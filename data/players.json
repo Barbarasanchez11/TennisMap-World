@@ -6,8 +6,8 @@
     "dateOfBirth": "1986-06-03",
     "ranking": 1,
     "points": 9850,
-    "dominantHand": "izquierda",
-    "gender": "masculino",
+    "dominantHand": "left",
+    "gender": "male",
     "country": "España",
     "city": "Manacor",
     "coordinates": {
