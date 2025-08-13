@@ -73,7 +73,7 @@ const main = async () => {
   console.log('Conexión a MongoDB cerrada');
 };
 
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   main().catch(error => {
     console.error('Error en el script de seed:', error);
     process.exit(1);

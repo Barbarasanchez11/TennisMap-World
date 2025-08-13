@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "API backend para TennisMap World, una aplicación interactiva que muestra en tiempo real torneos, jugadores y eventos del ecosistema global del tenis.",
-  "main": "src/app.js",
+  "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
     "lint": "eslint . --fix",

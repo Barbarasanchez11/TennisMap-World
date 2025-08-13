@@ -1,6 +1,6 @@
 import Player from '../models/Player.js';
 
-const getAllPlayers = async (req, res) => {
+const getAllPlayers = async (_req, res) => {
   try {
     const players = await Player.find({});
 
@@ -124,7 +124,9 @@ const deletePlayer = async (req, res) => {
 
 const getPlayersByLocation = async (req, res) => {
   try {
-    const { lat, lng, radius = 1000 } = req.query;
+   
+    const { lat, lng } = req.query;
+    const radius = req.query.radius || 1000;
     
     if (!lat || !lng) {
       return res.status(400).json({
@@ -133,6 +135,14 @@ const getPlayersByLocation = async (req, res) => {
       });
     }
 
+    if (isNaN(radius) || parseInt(radius) <= 0) {
+      return res.status(400).json({
+        success: false,
+        message: 'Radius must be a positive number'
+      });
+    }
+
+   
     const players = await Player.find({
       coordinates: {
         $near: {
