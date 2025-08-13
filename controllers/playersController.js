@@ -9,10 +9,11 @@ const getAllPlayers = async (_req, res) => {
       data: players
     });
   } catch (error) {
+    console.error('Error getting players:', error);
     res.status(500).json({
       success: false,
-      message: 'Error getting players',
-      error: error.message
+      message: 'Internal server error while retrieving players',
+      error: process.env.NODE_ENV === 'development' ? error.message : 'An unexpected error occurred'
     });
   }
 };
@@ -35,10 +36,11 @@ const getPlayerById = async (req, res) => {
       data: player
     });
   } catch (error) {
+    console.error('Error getting player by ID:', error);
     res.status(500).json({
       success: false,
-      message: 'Error getting player',
-      error: error.message
+      message: 'Internal server error while retrieving player',
+      error: process.env.NODE_ENV === 'development' ? error.message : 'An unexpected error occurred'
     });
   }
 };
@@ -56,10 +58,20 @@ const createPlayer = async (req, res) => {
       data: player
     });
   } catch (error) {
+    console.error('Error creating player:', error);
+    
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({
+        success: false,
+        message: 'Validation error: Please check your input data',
+        error: process.env.NODE_ENV === 'development' ? error.message : 'Invalid data provided'
+      });
+    }
+    
     res.status(400).json({
       success: false,
-      message: 'Error creating player',
-      error: error.message
+      message: 'Error creating player: Invalid data provided',
+      error: process.env.NODE_ENV === 'development' ? error.message : 'An unexpected error occurred'
     });
   }
 };
@@ -88,10 +100,20 @@ const updatePlayer = async (req, res) => {
       data: player
     });
   } catch (error) {
+    console.error('Error updating player:', error);
+    
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({
+        success: false,
+        message: 'Validation error: Please check your update data',
+        error: process.env.NODE_ENV === 'development' ? error.message : 'Invalid data provided'
+      });
+    }
+    
     res.status(400).json({
       success: false,
-      message: 'Error updating player',
-      error: error.message
+      message: 'Error updating player: Invalid data provided',
+      error: process.env.NODE_ENV === 'development' ? error.message : 'An unexpected error occurred'
     });
   }
 };
@@ -114,10 +136,11 @@ const deletePlayer = async (req, res) => {
       message: 'Player deleted successfully'
     });
   } catch (error) {
+    console.error('Error deleting player:', error);
     res.status(500).json({
       success: false,
-      message: 'Error deleting player',
-      error: error.message
+      message: 'Internal server error while deleting player',
+      error: process.env.NODE_ENV === 'development' ? error.message : 'An unexpected error occurred'
     });
   }
 };
@@ -135,7 +158,8 @@ const getPlayersByLocation = async (req, res) => {
       });
     }
 
-    if (isNaN(radius) || parseInt(radius) <= 0) {
+    const radiusNumber = parseInt(radius);
+    if (radiusNumber <= 0) {
       return res.status(400).json({
         success: false,
         message: 'Radius must be a positive number'
@@ -150,7 +174,7 @@ const getPlayersByLocation = async (req, res) => {
             type: 'Point',
             coordinates: [parseFloat(lng), parseFloat(lat)]
           },
-          $maxDistance: parseInt(radius)
+          $maxDistance: radiusNumber
         }
       }
     });
@@ -161,10 +185,11 @@ const getPlayersByLocation = async (req, res) => {
       count: players.length
     });
   } catch (error) {
+    console.error('Error searching players by location:', error);
     res.status(500).json({
       success: false,
-      message: 'Error searching players by location',
-      error: error.message
+      message: 'Internal server error while searching players by location',
+      error: process.env.NODE_ENV === 'development' ? error.message : 'An unexpected error occurred'
     });
   }
 };
@@ -190,10 +215,11 @@ const getPlayersByRanking = async (req, res) => {
       count: players.length
     });
   } catch (error) {
+    console.error('Error getting players by ranking:', error);
     res.status(500).json({
       success: false,
-      message: 'Error getting players by ranking',
-      error: error.message
+      message: 'Internal server error while getting players by ranking',
+      error: process.env.NODE_ENV === 'development' ? error.message : 'An unexpected error occurred'
     });
   }
 };
