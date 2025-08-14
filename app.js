@@ -2,7 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
+
 import playerRoutes from './routes/playerRoutes.js';
+import tournamentsRoutes from './routes/tournamentsRoutes.js'
 
 dotenv.config();
 connectDB();
@@ -17,7 +19,8 @@ app.get('/', (req, res) => {
 });
 
 
-app.use('/api/players', playerRoutes);
+app.use('/players', playerRoutes);
+app.use('/tournament', tournamentsRoutes)
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
