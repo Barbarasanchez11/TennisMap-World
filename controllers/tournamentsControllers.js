@@ -1,4 +1,4 @@
-import Tournament from "../models/Tournament";
+import Tournament from "../models/Tournament.js";
 import mongoose from "mongoose";
 
 const TournamentControllers = {
@@ -168,4 +168,4 @@ const TournamentControllers = {
 
 }
 
-export default TournamentControllers
+export default TournamentControllers;
