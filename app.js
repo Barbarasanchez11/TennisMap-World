@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
   res.send('TennisMap World API está en funcionamiento');
 });
 
-// Rutas de la API
+
 app.use('/api/players', playerRoutes);
 
 const PORT = process.env.PORT || 4000;

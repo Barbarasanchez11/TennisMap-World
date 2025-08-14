@@ -147,7 +147,7 @@ const deletePlayer = async (req, res) => {
 
 const getPlayersByLocation = async (req, res) => {
   try {
-   
+
     const { lat, lng } = req.query;
     const radius = req.query.radius || 1000;
     
@@ -166,7 +166,7 @@ const getPlayersByLocation = async (req, res) => {
       });
     }
 
-   
+
     const players = await Player.find({
       coordinates: {
         $near: {
