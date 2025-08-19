@@ -135,7 +135,7 @@ const getWeatherForTournament = async (req, res) => {
     }
 };
 
-const getCacheStats = async (req, res) => {
+const getCacheStats = async (_req, res) => {
     try {
         const stats = weatherService.getCacheStats();
         
@@ -154,7 +154,7 @@ const getCacheStats = async (req, res) => {
     }
 };
 
-const clearCache = async (req, res) => {
+const clearCache = async (_req, res) => {
     try {
         weatherService.clearCache();
         

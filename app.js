@@ -6,6 +6,7 @@ import connectDB from './config/db.js';
 import playerRoutes from './routes/playerRoutes.js';
 import tournamentsRoutes from './routes/tournamentsRoutes.js';
 import weatherRoutes from './routes/weatherRoutes.js';
+import statsRoutes from './routes/statsRoutes.js';
 
 dotenv.config();
 connectDB();
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 app.use('/players', playerRoutes);
 app.use('/tournament', tournamentsRoutes);
 app.use('/weather', weatherRoutes);
+app.use('/stats', statsRoutes);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
