@@ -31,11 +31,11 @@ const authenticateToken = async (req, res, next) => {
                 picture: decodedToken.picture
             };
             
-            console.log('✅ User authenticated:', req.user.email);
+            console.log('User authenticated:', req.user.email);
             next();
             
         } catch (firebaseError) {
-            console.error('❌ Firebase token verification failed:', firebaseError.message);
+            console.error('Firebase token verification failed:', firebaseError.message);
             
             if (firebaseError.code === 'auth/id-token-expired') {
                 return res.status(401).json({
@@ -58,7 +58,7 @@ const authenticateToken = async (req, res, next) => {
         }
         
     } catch (error) {
-        console.error('❌ Authentication middleware error:', error);
+        console.error('Authentication middleware error:', error);
         return res.status(500).json({
             success: false,
             message: 'Internal server error during authentication'
@@ -78,11 +78,8 @@ const requireRole = (allowedRoles) => {
 
             const userEmail = req.user.email;
             
-            // Aquí podrías verificar el rol desde tu base de datos
-            // Por ahora, asumimos que todos los usuarios autenticados tienen rol 'user'
-            // En producción, deberías verificar contra tu modelo User
             
-            const userRole = 'user'; // Temporal - después se obtiene de la DB
+            const userRole = 'user';
             
             if (!allowedRoles.includes(userRole)) {
                 return res.status(403).json({
@@ -92,11 +89,11 @@ const requireRole = (allowedRoles) => {
             }
             
             req.user.role = userRole;
-            console.log('✅ Role verified:', userRole, 'for user:', userEmail);
+           
             next();
             
         } catch (error) {
-            console.error('❌ Role verification error:', error);
+            console.error(' Role verification error:', error);
             return res.status(500).json({
                 success: false,
                 message: 'Internal server error during role verification'
