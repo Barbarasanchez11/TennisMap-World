@@ -7,7 +7,7 @@ dotenv.config();
 const testTournamentModel = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/tennismap');
-    console.log('✅ MongoDB conectado');
+ 
 
     const testTournament = new Tournament({
       name: 'Roland Garros 2024',
@@ -24,21 +24,21 @@ const testTournamentModel = async () => {
     });
 
     await testTournament.save();
-    console.log('✅ Tournament creado:', testTournament.name);
+   
 
     const found = await Tournament.findOne({ name: 'Roland Garros 2024' });
-    console.log('✅ Tournament encontrado:', found.name);
+ 
 
     await Tournament.deleteOne({ name: 'Roland Garros 2024' });
-    console.log('✅ Tournament eliminado');
+   
 
-    console.log('🎾 Modelo Tournament funciona perfectamente!');
+    
     
   } catch (error) {
-    console.error('❌ Error:', error.message);
+    console.error(' Error:', error.message);
   } finally {
     await mongoose.connection.close();
-    console.log('🔌 Conexión cerrada');
+   
   }
 };
 
