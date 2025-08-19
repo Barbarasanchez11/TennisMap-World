@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
+import './config/firebase.js';
 
 import playerRoutes from './routes/playerRoutes.js';
 import tournamentsRoutes from './routes/tournamentsRoutes.js';
