@@ -1,6 +1,12 @@
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
+    firebaseUid: {
+        type: String,
+        required: [true, 'Firebase UID is required'],
+        trim: true,
+        unique: true
+    },
     email: {
         type: String,
         required: [true, 'Email is required'],
@@ -11,9 +17,8 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: [true, 'Password is required'],
         trim: true,
-        maxlength: [50, 'Password cannot be longer than 50 characters']
+        maxlength: [200, 'Password cannot be longer than 200 characters']
     },
     firstName: {
         type: String,
@@ -27,6 +32,16 @@ const userSchema = new mongoose.Schema({
         trim: true,
         maxlength: [50, 'Last name cannot be longer than 50 characters']
     },
+    displayName: {
+        type: String,
+        trim: true,
+        maxlength: [120, 'Display name cannot be longer than 120 characters']
+    },
+    photoUrl: {
+        type: String,
+        trim: true,
+        maxlength: [500, 'Photo URL cannot be longer than 500 characters']
+    },
     role: {
         type: String,
         enum: ['user', 'admin'],
@@ -35,16 +50,13 @@ const userSchema = new mongoose.Schema({
     isActive: {
         type: Boolean,
         default: true
-    },
-    refreshTokens: [{
-        type: String,
-        trim:true
-    }]
+    }
 
 }, {
     timestamps: true
 })
 
+userSchema.index({ firebaseUid: 1 });
 userSchema.index({ email: 1 });
 userSchema.index({ role: 1 });
 userSchema.index({ isActive: 1 });

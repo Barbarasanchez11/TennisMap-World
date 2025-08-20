@@ -1,113 +1,91 @@
 import admin from '../config/firebase.js';
+import User from '../models/Users.js';
 
-const authenticateToken = async (req, res, next) => {
-    try {
-        const authHeader = req.headers.authorization;
-        
-        if (!authHeader || !authHeader.startsWith('Bearer ')) {
-            return res.status(401).json({
-                success: false,
-                message: 'Access token required. Format: Bearer <token>'
-            });
-        }
+const findOrCreateUser = async (decodedToken) => {
+  const { uid, email, name, picture, role } = decodedToken;
 
-        const token = authHeader.split(' ')[1];
-        
-        if (!token) {
-            return res.status(401).json({
-                success: false,
-                message: 'Token not provided'
-            });
-        }
+  let user = await User.findOne({ firebaseUid: uid }) || (email && await User.findOne({ email }));
 
-        try {
-            const decodedToken = await admin.auth().verifyIdToken(token);
-            
-            req.user = {
-                uid: decodedToken.uid,
-                email: decodedToken.email,
-                emailVerified: decodedToken.email_verified,
-                name: decodedToken.name,
-                picture: decodedToken.picture
-            };
-            
-            console.log('User authenticated:', req.user.email);
-            next();
-            
-        } catch (firebaseError) {
-            console.error('Firebase token verification failed:', firebaseError.message);
-            
-            if (firebaseError.code === 'auth/id-token-expired') {
-                return res.status(401).json({
-                    success: false,
-                    message: 'Token expired. Please login again.'
-                });
-            }
-            
-            if (firebaseError.code === 'auth/id-token-revoked') {
-                return res.status(401).json({
-                    success: false,
-                    message: 'Token revoked. Please login again.'
-                });
-            }
-            
-            return res.status(401).json({
-                success: false,
-                message: 'Invalid token. Please login again.'
-            });
-        }
-        
-    } catch (error) {
-        console.error('Authentication middleware error:', error);
-        return res.status(500).json({
-            success: false,
-            message: 'Internal server error during authentication'
-        });
-    }
+  if (!user) {
+    user = new User({
+      firebaseUid: uid,
+      email,
+      firstName: name?.split(' ')[0] || 'User',
+      lastName: name?.split(' ').slice(1).join(' ') || 'TennisMap',
+      role: role || 'user',
+      isActive: true,
+      displayName: name || undefined,
+      photoUrl: picture || undefined
+    });
+  } else {
+    Object.assign(user, {
+      email: email || user.email,
+      displayName: name || user.displayName,
+      photoUrl: picture || user.photoUrl,
+      role: role || user.role,
+      firebaseUid: user.firebaseUid || uid
+    });
+  }
+
+  await user.save();
+  return user;
 };
 
-const requireRole = (allowedRoles) => {
-    return async (req, res, next) => {
-        try {
-            if (!req.user) {
-                return res.status(401).json({
-                    success: false,
-                    message: 'Authentication required'
-                });
-            }
+const authenticateToken = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) return res.status(401).json({ success: false, message: 'Token required' });
 
-            const userEmail = req.user.email;
-            
-            
-            const userRole = 'user';
-            
-            if (!allowedRoles.includes(userRole)) {
-                return res.status(403).json({
-                    success: false,
-                    message: `Access denied. Required roles: ${allowedRoles.join(', ')}`
-                });
-            }
-            
-            req.user.role = userRole;
-           
-            next();
-            
-        } catch (error) {
-            console.error(' Role verification error:', error);
-            return res.status(500).json({
-                success: false,
-                message: 'Internal server error during role verification'
-            });
-        }
+    const decodedToken = await admin.auth().verifyIdToken(token);
+
+    if (!decodedToken.email_verified) {
+      return res.status(403).json({ success: false, message: 'Email not verified' });
+    }
+
+    const dbUser = await findOrCreateUser(decodedToken);
+
+    if (!dbUser.isActive) {
+      return res.status(403).json({ success: false, message: 'Account disabled' });
+    }
+
+    req.user = {
+      uid: decodedToken.uid,
+      email: decodedToken.email,
+      emailVerified: decodedToken.email_verified,
+      name: decodedToken.name,
+      picture: decodedToken.picture,
+      role: decodedToken.role || dbUser.role,
+      dbUserId: dbUser._id.toString()
     };
+
+    next();
+  } catch (err) {
+    console.error('Auth error:', err.message);
+    return res.status(401).json({
+      success: false,
+      message: err.code === 'auth/id-token-expired' ? 'Token expired' :
+               err.code === 'auth/id-token-revoked' ? 'Token revoked' :
+               'Invalid token'
+    });
+  }
+};
+
+const requireRole = (allowedRoles) => (req, res, next) => {
+  if (!req.user) {
+    return res.status(401).json({ success: false, message: 'Authentication required' });
+  }
+  if (!allowedRoles.includes(req.user.role)) {
+    return res.status(403).json({ success: false, message: `Access denied. Allowed roles: ${allowedRoles.join(', ')}` });
+  }
+  next();
 };
 
 const requireAdmin = requireRole(['admin']);
 const requireUser = requireRole(['user', 'admin']);
 
 export {
-    authenticateToken,
-    requireRole,
-    requireAdmin,
-    requireUser
-}; 
+  authenticateToken,
+  requireRole,
+  requireAdmin,
+  requireUser
+};
